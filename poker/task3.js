@@ -160,45 +160,25 @@ const cards = [
         value: 14,},
 ]
 
-const color = ['club', 'diamond','spade', 'heart'];
-const values = Array.from(Array(13).keys()).map(i => i + 2)
-const cardsNew = values.reduce((prev, next) => [...prev, ...color.map(color => ({color, value: next}))], []);
-
-const getFigure = (value) => {
-    switch (value) {
-        case 11:
-            return 'J'
-        case 12:
-            return 'Q'
-        case 13:
-            return 'K'
-        case 14:
-            return 'A'
-        default:
-            return value.toString();
-    }
-}
-console.log(cardsNew)
-console.log(getFigure(12) || getFigure(11) || getFigure(4));
-
-
 const checkCards = cardsOnHand => {
 
-    return checkRoyalFlush(cardsOnHand) || checkStraightFlush(cardsOnHand) ||
-        checkFourOfAKind(cardsOnHand) || checkFullHouse(cardsOnHand) || checkThreeOrLess(cardsOnHand);
-    // if (checkRoyalFlush(cardsOnHand)) {
-    // } else if (checkStraightFlush(cardsOnHand)) {
-    // } else if (checkFourOfAKind(cardsOnHand)) {
-    // } else if (checkFullHouse(cardsOnHand)) {
-    // } else {
-    //     checkThreeOrLess(cardsOnHand);
-    // }
+    if (checkRoyalFlush(cardsOnHand) !== false) {
+        return
+    } else if (checkStraightFlush(cardsOnHand) !== false) {
+        return
+    } else if (checkFourOfAKind(cardsOnHand) !== false) {
+        return
+    } else if (checkFullHouse(cardsOnHand)!== false) {
+        return
+    } else if (checkThreeOrLess(cardsOnHand) !== false) {
+        return
+    }
 }
 // Helping functions
 const sumValue = cardsOnHand => {
     let sum = 0;
     for (let i =0; i<5; i++) {
-        const card = cardsNew.find(card => card.figure === cardsOnHand[i].figure);
+        const card = cards.find(card => card.figure === cardsOnHand[i].figure);
         sum += card.value
     }
     return sum
