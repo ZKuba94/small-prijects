@@ -52,7 +52,7 @@ const checkCardsValues = hand => {
 }
 const sumValue = hand => {
     let sum = 0;
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < hand.length; i++) {
         const card = getValue(hand[i].figure)
         sum += card
     }
