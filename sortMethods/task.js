@@ -58,7 +58,8 @@
 // };
 // sort3(array3);
 
-const a = [23, 43, 1, -1, -1, 77, -1, -1, -1, 3]
+// function to sort numbers, but leaving one value in the same place as at the beggining.
+// const a = [23, 43, 1, -1, -1, 77, -1, -1, -1, 3]
 // function solution(a) {
 //         let i = 0;
 //         let counter = 0;
@@ -89,21 +90,26 @@ const a = [23, 43, 1, -1, -1, 77, -1, -1, -1, 3]
 
 // The same as the one above o o
 //                            O
-const solution = a => {
-    let filtered = a.filter(value => value !== -1)
-    let sorted = filtered.sort((a,b)=>a-b)
-    return console.log(a.map(value => value === -1? -1: sorted.shift()))
-}
-solution(a)
+// const solution = a => {
+//     let filtered = a.filter(value => value !== -1)
+//     let sorted = filtered.sort((a, b) => a - b)
+//     return console.log(a.map(value => value === -1 ? -1 : sorted.shift()))
+// }
+// solution(a)
 
-const str = 'foo(bar)baz(blim)'
+// function to take off braces and reverse content inside.
+const str = 'foo(bar((baz)))uuu(azi)blim';
 function solution2(inputString) {
-    const start = inputString.indexOf('(')
-    const end = inputString.indexOf(')')
-    let short = inputString.substring(start+1,end)
-    let switched = (Array.from(short).reverse()).join('')
-    return inputString.includes('(')
-        ? solution2(inputString.replace(short,switched).replace('(','').replace(')',''))
-        : console.log(inputString.replace(short,switched).replace('(','').replace(')',''))
+    let counter = 0;
+    (inputString.split('')).forEach(el => el === '(' ? counter++ : false);
+    for (let i = 0; i < counter; i++) {
+        let start = inputString.lastIndexOf('(')
+        let check = inputString.substring(start)
+        let stop = check.indexOf(')')+start
+        let toCut = ((inputString.split('')).splice(start, stop - start + 1)).join('')
+        let reversed = (((Array.from(toCut)).filter(el => el !== '(' && el !== ')')).reverse()).join('')
+        inputString = inputString.replace(toCut, reversed)
+    }
+        return console.log(inputString)
 }
 solution2(str)
