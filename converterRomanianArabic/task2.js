@@ -1,5 +1,5 @@
 // TASK 2
-const array = [9, 15, 68, 120, 677, 1340, 2789, 'mcc'];
+const array = ['iv', 'xi', 'xl', 'xc', 'cm', 'mc', 'cd', 'CMXX', 60, 920];
 // const array = ['iv', 'xi', 'xl','xc','cm', 'mc','cd',60];
 const romanianNumbers = [
     {
