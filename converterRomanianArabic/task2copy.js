@@ -1,7 +1,7 @@
 // TASK 2
 const array2 = [9, 1200, 68, 120, 677, 1340, 2789, 'mcc'];
-const array = ['iv', 'xi', 'xl', 'xc', 'cm', 'mc', 'cd', 'CMXX', 60, 920];
-const array1 = ['cx', 'cv', 'md', 'mc', 'lx', 'clxxx', 'clvvv']
+const array1 = ['iv', 'xi', 'L', 'xc', 'cm', 'mc', 'cd', 'CMXX', 60, 920];
+const array = ['ccxxiv', 'cv', 'md', 'mc', 'lx', 'clxxx','m','xcv','cmxx']
 const romanianNumbers = [
     {
         symbol: 'I',
@@ -131,32 +131,36 @@ const checkCorrectSymbol = romanNr => {
     return true;
 };
 const checkSymbolOrder = romanNr => {
+    convertedArabicNumber=0
     romanianValue = [];
     for (let i = 0; i < romanNr.length; i++) {
-        const romanianDigitValue = romanianNumbers.find(el => el.symbol === romanNr.at(i));
-        romanianValue.push(romanianDigitValue.value);
+        const romanianDigitValue = (romanianNumbers.find(el => el.symbol === romanNr.at(i))).value;
+        romanianValue.push(romanianDigitValue);
     }
     for (let i = 0; i < romanianValue.length; i++) {
-        if (romanianValue[i] < romanianValue[i + 1] || romanianValue[i + 1] === undefined) {
-            return checkSubtraction(romanianValue);
-        }
+        if (romanianValue[i] < romanianValue[i + 1]) {
+            checkSubtraction(romanianValue);
+        } else if (romanianValue[i] > romanianValue[i + 1] || romanianValue[i + 1] === undefined) {}
     }
     return romanianAdding(romanianValue);
 }
-const romanianAdding = romanVal => {
-    convertedArabicNumber = 0;
+const romanianAdding = (romanVal) => {
     for (let i = 0; i < romanVal.length; i++) {
         const filteredValues = romanVal.filter(value => value === romanVal[i]);
         if (filteredValues.length < 2 && (romanVal[i].toString()).startsWith('5')) {
             convertedArabicNumber += romanVal[i];
         } else if (filteredValues.length <= 3 && (romanVal[i].toString()).startsWith('1')) {
             convertedArabicNumber += romanVal[i];
+        }
+        // this condition is when counting get back from subtraction function
+        else if(romanVal[i] < romanVal[i+1]) {
+            const arr = romanVal.splice(i)
+            return checkSubtraction(arr)
         } else return convertedNumbers.push('Too many same symbols in a row.');
     }
     convertedNumbers.push(convertedArabicNumber);
 };
-const checkSubtraction = romanVal => {
-    convertedArabicNumber = 0;
+const checkSubtraction = (romanVal) => {
     for (let i = 0; i < romanVal.length; i++) {
         const filteredValues = romanVal.filter(value => value === romanVal[i]);
         if (filteredValues.length <= 3
@@ -172,7 +176,13 @@ const checkSubtraction = romanVal => {
             && romanVal[i + 1] === undefined) {
         } else if (filteredValues.length < 2 && !(romanVal[i].toString()).startsWith('1')
             && romanVal[i + 1] === undefined) {
-        } else return convertedNumbers.push('Invalid Romanian format.');
+        }
+        // this condition is when counting get back from adding function or after subtraction
+        else if(romanVal[i] > romanVal[i+1]){
+            const arr = romanVal.splice(i)
+            return romanianAdding(arr)
+        }
+        else return convertedNumbers.push('Invalid Romanian format.');
     }
     convertedNumbers.push(convertedArabicNumber);
 }
