@@ -1,8 +1,7 @@
 // TASK 2
-const array2 = [9, 1200, 68, 120, 677, 1340, 2789, 'mcc'];
-const array1 = ['iv', 'xi', 'L', 'xc', 'cm', 'mc', 'cd', 'CMXX', 60, 920];
-const array3 = ['cm', 'mmcdlxxxiv', 'mdcclix', 'MCDXLIX', 'xi', 'clxxx', 'mmccd', 'xcv', 'cmxx']
-const array = ['mmmxi']
+const array = ['cm', 'mmcdlxxxiv', 'mdcclix', 'MCDXLIX', 'xi', 'clxxx', 'mmccd', 'xcv', 'cmxx',9, 1200, 68, 120,
+    677, 1340, 2789, 'mcc','iv', 'xi', 'L', 'xc', 'cm', 'mc', 'cd', 'CMXX', 60, 920,'mmmxi', 'cccm']
+const array2 = ['cccm']
 const romanianNumbers = [
     {
         symbol: 'I',
@@ -35,7 +34,6 @@ const romanianNumbers = [
 ];
 let convertedRomanianNumber = '';
 let convertedArabicNumber = 0;
-let romanianValue = [];
 let convertedNumbers = [];
 const converterRomanianArabicNumbers = arr => {
     for (let i = 0; i < arr.length; i++) {
@@ -142,14 +140,16 @@ const checkSymbolValues = romanNr => {
 }
 const romanianAdding = (romanVal) => {
     for (let i = 0; i < romanVal.length; i++) {
+        const checkValue = romanVal.slice(i+1)
+        console.log(checkValue.every(value => romanVal[i] < value))
         const filteredValuesAll = romanVal.filter(value => value === romanVal[i]);
         if (filteredValuesAll.length >= 5) {return convertedNumbers.push('Too many same symbols in a row.')}
         const filteredValues = (romanVal.slice(i,i+4)).filter(value => value === romanVal[i]);
         if (romanVal[i] < romanVal[i + 1] && filteredValues.length === 1) {
             const arr = romanVal.splice(i)
             return checkSubtraction(arr)
-        } else if (romanVal[i] < romanVal[i + 1] && filteredValues.length !== 1) {
-            return convertedNumbers.push('Invalid Romanian number format.')
+        } else if (!checkValue.every(value => romanVal[i] >= value) && filteredValues.length !== 1) {
+            return convertedNumbers.push('Invalid Romanian number format...')
         } else if (filteredValues.length < 2 && (romanVal[i].toString()).startsWith('5')) {
             convertedArabicNumber += romanVal[i];
         } else if (filteredValues.length <= 3 && (romanVal[i].toString()).startsWith('1')) {
