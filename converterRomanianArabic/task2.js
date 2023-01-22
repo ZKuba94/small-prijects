@@ -1,6 +1,6 @@
 // TASK 2
-const array = ['iv', 'xi', 'xl', 'xc', 'cm', 'mc', 'cd', 'CMXX', 60, 920];
-// const array = ['iv', 'xi', 'xl','xc','cm', 'mc','cd',60];
+// const array = ['iv', 'xi', 'xl', 'xc', 'cm', 'mc', 'cd', 'CMXX', 60, 920];
+const array = ['ccxxiv', 'cv', 'md', 'mc', 'lx', 'clxxx','m','xcv','cmxx'];
 const romanianNumbers = [
     {
         symbol: 'I',
@@ -269,3 +269,4 @@ const checkSubtraction = romanianValue => {
     convertedNumbers.push(convertedArabicNumber);
 }
 converterRomanianArabicNumbers(array);
+
