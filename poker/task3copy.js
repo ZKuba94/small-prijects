@@ -1,6 +1,6 @@
 // TASK 3
-const cardsOnHand = [{figure: '5', color: 'club'}, {figure: '6', color: 'diamond'},
-    {figure: '7', color: 'diamond'}, {figure: 'J', color: 'diamond'}, {figure: '9', color: 'diamond'}]
+const cardsOnHand = [{figure: '6', color: 'club'}, {figure: '6', color: 'diamond'},
+    {figure: '6', color: 'diamond'}, {figure: '8', color: 'diamond'}, {figure: '9', color: 'diamond'}]
 let cardsValues;
 // const color = ['club', 'diamond', 'spade', 'heart'];
 // const values = Array.from(Array(13).keys()).map(i => i + 2)

@@ -1,7 +1,6 @@
 // TASK 2
 const array = ['cm', 'mmcdlxxxiv', 'mdcclix', 'MCDXLIX', 'xi', 'clxxx', 'mmccd', 'xcv', 'cmxx',9, 1200, 68, 120,
     677, 1340, 2789, 'mcc','iv', 'xi', 'L', 'xc', 'cm', 'mc', 'cd', 'CMXX', 60, 920,'mmmxi', 'cccm']
-const array2 = ['cccm']
 const romanianNumbers = [
     {
         symbol: 'I',
