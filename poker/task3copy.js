@@ -64,17 +64,9 @@ const checkSameColor = hand => {
     let checkColor = hand.every(card => card.color === firstCardColor)
     return checkColor
 }
-// TODO use .sort()
 const sortValues = hand => {
     checkCardsValues(hand)
     // let sortedValues = [];
-    // const arrayLength = cardsValues.length;
-    // for (let i = 0; i < arrayLength; i++) {
-    //     let x = Math.min(...cardsValues);
-    //     cardsValues.indexOf(x);
-    //     cardsValues.splice(cardsValues.indexOf(x), 1);
-    //     sortedValues.push(x);
-    // }
     if (hand === undefined || hand.length === 0) {
         return console.log('Empty array');
     }
