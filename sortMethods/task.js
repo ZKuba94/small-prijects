@@ -98,18 +98,44 @@
 // solution(a)
 
 // function to take off braces and reverse content inside.
-const str = 'foo(bar((baz)))uuu(azi)blim';
-function solution2(inputString) {
-    let counter = 0;
-    (inputString.split('')).forEach(el => el === '(' ? counter++ : false);
-    for (let i = 0; i < counter; i++) {
-        let start = inputString.lastIndexOf('(')
-        let check = inputString.substring(start)
-        let stop = check.indexOf(')')+start
-        let toCut = ((inputString.split('')).splice(start, stop - start + 1)).join('')
-        let reversed = (((Array.from(toCut)).filter(el => el !== '(' && el !== ')')).reverse()).join('')
-        inputString = inputString.replace(toCut, reversed)
+// const str = 'foo(bar((baz)))uuu(azi)blim';
+// function solution2(inputString) {
+//     let counter = 0;
+//     (inputString.split('')).forEach(el => el === '(' ? counter++ : false);
+//     for (let i = 0; i < counter; i++) {
+//         let start = inputString.lastIndexOf('(')
+//         let check = inputString.substring(start)
+//         let stop = check.indexOf(')')+start
+//         let toCut = ((inputString.split('')).splice(start, stop - start + 1)).join('')
+//         let reversed = (((Array.from(toCut)).filter(el => el !== '(' && el !== ')')).reverse()).join('')
+//         inputString = inputString.replace(toCut, reversed)
+//     }
+//         return console.log(inputString)
+// }
+// solution2(str)
+
+const a = [0]
+const b = [0]
+
+function solution(a, b) {
+    if (a.toString()===b.toString()){
+        return console.log(true)
+    } else {
+        for (let i=0; i<a.length;i++) {
+            for (let j = i+1;j<a.length;j++) {
+                if (a[i]!==b[i]) {
+                    let temp = a[i]
+                    a[i] = a[j]
+                    a[j] = temp
+                    if (a.toString()===b.toString()){
+                        return console.log(true)
+                    }
+                    a[j] = a[i]
+                    a[i] = temp
+                }
+            }
+        }
+        return console.log(false)
     }
-        return console.log(inputString)
 }
-solution2(str)
+solution(a,b)

@@ -1,5 +1,5 @@
 // TASK 3
-const cardsOnHand = [{figure: '6', color: 'club'}, {figure: '6', color: 'diamond'},
+const cardsOnHand = [{figure: '6', color: 'club'}, {figure: '9', color: 'diamond'},
     {figure: '6', color: 'diamond'}, {figure: '8', color: 'diamond'}, {figure: '9', color: 'diamond'}]
 let cardsValues;
 // const color = ['club', 'diamond', 'spade', 'heart'];
@@ -13,6 +13,7 @@ const checkCards = hand => {
         || checkFullHouse(hand)
         || checkThreeOrLess();
 }
+
 // Helping functions
 const getFigure = (value) => {
     switch (value) {
@@ -39,7 +40,7 @@ const getValue = (figure) => {
         case 'A':
             return 14
         default:
-            return Number.parseFloat(figure);
+            return  +figure; //Number(figure);
     }
 }
 const checkCardsValues = hand => {
@@ -63,20 +64,33 @@ const checkSameColor = hand => {
     let checkColor = hand.every(card => card.color === firstCardColor)
     return checkColor
 }
+// TODO use .sort()
 const sortValues = hand => {
-    let sortedValues = [];
     checkCardsValues(hand)
-    const arrayLength = cardsValues.length;
-    for (let i = 0; i < arrayLength; i++) {
-        let x = Math.min(...cardsValues);
-        cardsValues.indexOf(x);
-        cardsValues.splice(cardsValues.indexOf(x), 1);
-        sortedValues.push(x);
+    // let sortedValues = [];
+    // const arrayLength = cardsValues.length;
+    // for (let i = 0; i < arrayLength; i++) {
+    //     let x = Math.min(...cardsValues);
+    //     cardsValues.indexOf(x);
+    //     cardsValues.splice(cardsValues.indexOf(x), 1);
+    //     sortedValues.push(x);
+    // }
+    if (hand === undefined || hand.length === 0) {
+        return console.log('Empty array');
     }
-    return sortedValues;
+    return hand.sort((a, b) => a-b);
+    // return sortedValues;
 }
 const checkStraight = hand => {
-    cardsValues = sortValues(hand)
+    cardsValues = sortValues(hand);
+    // return cardsValues.every((item, index, array) => {
+    //     if (index === 0) {
+    //         return true;
+    //     }
+    //     const sub = item - array[index - 1];
+    //     return Math.abs(sub) === 1;
+    // })
+
     return cardsValues[0] === (cardsValues[1] - 1) &&
         cardsValues[1] === (cardsValues[2] - 1) &&
         cardsValues[2] === (cardsValues[3] - 1) &&
@@ -102,7 +116,7 @@ const checkPairs = (figureValue) => {
     return true
 }
 
-// Main Functions
+// Main Functions +1
 const checkRoyalFlush = hand => {
     const royalHand =
         getValue('A') +
