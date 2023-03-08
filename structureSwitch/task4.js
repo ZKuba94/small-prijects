@@ -48,7 +48,7 @@ const flatToNest = (flat) => {
     }
     return console.log(nestedParents)
 }
-flatToNest(flat)
+// flatToNest(flat)
 
 const nestToFlat = nested => {
     const flattedArray = []
@@ -65,7 +65,7 @@ const nestToFlat = nested => {
     flattedArray.forEach(el => el.parentId !== undefined?'':el.parentId=null)
     return console.log(flattedArray)
 }
-nestToFlat(nested)
+// nestToFlat(nested)
 
 
 let flatList = [
@@ -108,5 +108,5 @@ const getFlat = (nestedList, parentId = null) =>
             []
         )
 
-console.log(getFlat(getNested(getFlat(getNested(flatList)))));
-console.log(getNested(getFlat(getNested(getFlat(nestedList)))));
+console.log(getNested(flatList));
+console.log(getFlat(nestedList));
