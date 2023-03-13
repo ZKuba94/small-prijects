@@ -47,7 +47,7 @@
 // };
 // sort2(array2);
 //
-// // Solution 3 - function in method sort make it work correctly
+// Solution 3 - function in method sort make it work correctly
 // let array3 = [33, 4, -6, 55, 4, 3, 0];
 // // let array4 = ['aaa', 'b', 'aa', 'a', 'bb'];
 // const sort3 = arr => {
